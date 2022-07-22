@@ -1,0 +1,27 @@
+header {
+  border: solid 0.15rem #ececec;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-right: 2.5rem;
+  width: 11.5rem;
+}
+
+ul {
+  list-style: none;
+  font-size: 1rem;
+}
+
+li {
+  line-height: 1.5rem;
+}
+
+a,
+a:visited,
+a:hover {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #125699;
+}
