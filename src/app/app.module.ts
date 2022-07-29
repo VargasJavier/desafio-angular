@@ -6,6 +6,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ItemComponent } from './components/item/item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
+import { StudentListComponent } from './components/student-list/student-list.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ItemListComponent } from './components/item-list/item-list.component';
     ToolbarComponent,
     ItemComponent,
     MenuComponent,
-    ItemListComponent
+    ItemListComponent,
+    StudentListComponent
   ],
   imports: [
     BrowserModule

@@ -1,0 +1,27 @@
+<h1>My students</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Curso</th>
+      <th>Plataforma</th>
+      <th>Nacimiento</th>
+      <th>Promedio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{ student.nombre }}</td>
+      <td>{{ student.apellido }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.curso }}</td>
+      <td>{{ student.plataforma }}</td>
+      <td>{{ student.nacimiento | date: "mediumDate" }}</td>
+      <td [ngClass]="student.promedio < promedio ? 'reproved' : ''">
+        {{ student.promedio }}
+      </td>
+    </tr>
+  </tbody>
+</table>
