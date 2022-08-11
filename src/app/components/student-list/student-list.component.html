@@ -1,27 +1,75 @@
 <h1>My students</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Email</th>
-      <th>Curso</th>
-      <th>Plataforma</th>
-      <th>Nacimiento</th>
-      <th>Promedio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of students">
-      <td>{{ student.nombre }}</td>
-      <td>{{ student.apellido }}</td>
-      <td>{{ student.email }}</td>
-      <td>{{ student.curso }}</td>
-      <td>{{ student.plataforma }}</td>
-      <td>{{ student.nacimiento | date: "mediumDate" }}</td>
-      <td [ngClass]="student.promedio < promedio ? 'reproved' : ''">
-        {{ student.promedio }}
-      </td>
-    </tr>
-  </tbody>
+<div class="container__input">
+  <mat-form-field appearance="outline">
+    <mat-label>Buscar</mat-label>
+    <input type="text" (keyup)="filtrar($event)" matInput />
+  </mat-form-field>
+</div>
+
+<table class="table-dark table__custom" mat-table [dataSource]="dataSource">
+  <!-- comision -->
+  <ng-container matColumnDef="comision">
+    <th class="table-light" mat-header-cell *matHeaderCellDef>Comisión</th>
+    <td class="table-light" mat-cell *matCellDef="let element">
+      {{ element.comision }}
+    </td>
+  </ng-container>
+  <!-- nombre -->
+  <ng-container matColumnDef="nombre">
+    <th class="table-light" mat-header-cell *matHeaderCellDef>
+      Nombres completos
+    </th>
+    <td class="table-light" mat-cell *matCellDef="let element">
+      {{ element.nombre | formatName: element.apellido }}
+    </td>
+  </ng-container>
+  <!-- email -->
+  <ng-container matColumnDef="email">
+    <th class="table-light" mat-header-cell *matHeaderCellDef>Email</th>
+    <td class="table-light" mat-cell *matCellDef="let element">
+      {{ element.email }}
+    </td>
+  </ng-container>
+  <!-- curso -->
+  <ng-container matColumnDef="curso">
+    <th class="table-light" mat-header-cell *matHeaderCellDef>Curso</th>
+    <td class="table-light" mat-cell *matCellDef="let element">
+      {{ element.curso }}
+    </td>
+  </ng-container>
+  <!-- plataforma -->
+  <ng-container matColumnDef="plataforma">
+    <th class="table-light" mat-header-cell *matHeaderCellDef>Plataforma</th>
+    <td class="table-light" mat-cell *matCellDef="let element">
+      {{ element.plataforma }}
+    </td>
+  </ng-container>
+  <!-- celular -->
+  <ng-container matColumnDef="celular">
+    <th class="table-light" mat-header-cell *matHeaderCellDef>Celular</th>
+    <td class="table-light" mat-cell *matCellDef="let element">
+      {{ element.celular | formatNumber: element.nacionalidad }}
+    </td>
+  </ng-container>
+  <!-- nacionalidad -->
+  <ng-container matColumnDef="nacionalidad">
+    <th class="table-light" mat-header-cell *matHeaderCellDef>Nacionalidad</th>
+    <td class="table-light" mat-cell *matCellDef="let element">
+      {{ element.nacionalidad | transformar }}
+    </td>
+  </ng-container>
+  <!-- acciones -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <th mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="editar(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="eliminar(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </th>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnas"></tr>
 </table>
