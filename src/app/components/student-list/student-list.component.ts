@@ -152,4 +152,17 @@ export class StudentListComponent implements OnInit {
     const valorObtenido = (event.target as HTMLInputElement).value;
     this.dataSource.filter = valorObtenido.trim().toLocaleLowerCase();
   }
+
+  addStudent() {
+    const dialogRef = this.dialog.open(EditarDialogComponent, {
+      width: '400px',
+      data: { comision: '' },
+    });
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.dataSource.data.push(resultado);
+        this.tabla.renderRows();
+      }
+    });
+  }
 }
